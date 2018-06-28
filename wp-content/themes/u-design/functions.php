@@ -2034,11 +2034,16 @@ function udesign_footer_content_part() {
                 <a href="/programs">
                     <i class="fa fa-th-list" aria-hidden="true"></i>
                 </a>
-                <?php if (get_field( "previous_page", $post->ID )):?>
-                <a href="<?php echo get_field( "previous_page", $post->ID );?>">
+                <?php if (get_field( "previous_page", $post->ID )=='back'):?>
+                <a>
                     <i class="demo-icon icon-left-circled" style="font-size:34px"></i>
                 </a>
                 <?php endif;?>
+                <?php if (get_field( "previous_page", $post->ID ) && get_field( "previous_page", $post->ID )!='back'):?>
+                <a href="<?php echo get_field( "previous_page", $post->ID );?>">
+                    <i class="demo-icon icon-left-circled" style="font-size:34px"></i>
+                </a>
+                <?php endif;?>                
                 <?php if (get_field( "next_page", $post->ID )):?>
                 <a href="<?php echo get_field( "next_page", $post->ID );?>">
                     <i class="demo-icon icon-right-circled" style="font-size:34px"></i>
