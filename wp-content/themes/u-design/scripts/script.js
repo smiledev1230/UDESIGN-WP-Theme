@@ -337,9 +337,21 @@ jQuery(document).ready(function($) {
             });
         });
     });
-    $('.icon-left-circled').on('click', function(){
-        alert();
-        window.history.back();
-    });
 });
 
+jQuery(document).ready(function($) {
+    var state = getUrlParameter('s');
+    if (state) {
+        $('.dropdowncontent-dropdown').val(state);
+        $('*[data-dropdowncontent-value="'+state+'"]').addClass('dropdowncontent-content-selected');
+    }
+    function getUrlParameter(sParam){
+        var sPageURL=decodeURIComponent(window.location.search.substring(1)),sURLVariables=sPageURL.split('&'),sParameterName,i;
+        for(i=0;i<sURLVariables.length;i++){
+            sParameterName=sURLVariables[i].split('=');
+            if(sParameterName[0]===sParam){
+                return sParameterName[1];
+            }
+        }
+    }
+});
