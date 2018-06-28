@@ -3031,10 +3031,3 @@ function udesign_theme_activated () {
     udesign_set_welcome_page();
 }
 add_action('after_switch_theme', 'udesign_theme_activated');
-
-
-
-
-
-
-
