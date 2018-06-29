@@ -340,8 +340,13 @@ jQuery(document).ready(function($) {
 });
 
 jQuery(document).ready(function($) {
-    $('.demo-icon.icon-left-circled').on('click', function(){
-        window.history.back();
+    $('.icon-left-circled.page-history').on('click', function(evt) {
+        if (document.referrer.indexOf(window.location.host) !== -1) {
+            evt.preventDefault();
+            history.back();
+        } else {
+            window.location.href = $(this).data('url');
+        }
     });
     var state = $('.dropdowncontent-dropdown').val();
     if (state) {

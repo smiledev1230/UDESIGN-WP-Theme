@@ -2028,18 +2028,24 @@ function  udesign_get_comments_link() {
 function udesign_footer_content_part() {
     global $udesign_options;
     global $post;
+    $back_page = get_field( "previous_page", $post->ID );
+    $page_history = false;
+    if ($back_page) {
+        $urlArray = explode('?', $back_page);
+        if ($urlArray[1] && $urlArray[1]=='h=1') $page_history = true;
+    }
     ob_start(); ?>
         <div id="footer_text" >
             <div class="nav-buttons">
                 <a href="/programs">
                     <i class="fa fa-th-list" aria-hidden="true"></i>
                 </a>
-                <?php if (get_field( "previous_page", $post->ID )=='back'):?>
+                <?php if ($page_history):?>
                 <a>
-                    <i class="demo-icon icon-left-circled" style="font-size:34px"></i>
+                    <i class="demo-icon icon-left-circled page-history" style="font-size:34px" data-url="<?php echo $urlArray[0];?>"></i>
                 </a>
                 <?php endif;?>
-                <?php if (get_field( "previous_page", $post->ID ) && get_field( "previous_page", $post->ID )!='back'):?>
+                <?php if ($back_page && !$page_history):?>
                 <a href="<?php echo get_field( "previous_page", $post->ID );?>">
                     <i class="demo-icon icon-left-circled" style="font-size:34px"></i>
                 </a>
